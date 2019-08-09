@@ -7,22 +7,22 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class member implements Serializable {
 
-	private String LN;
-	private String FN;
-	private String EM;
-	private int PN;
-	private int ID;
-	private double FINES;
+	private String lastName;//LN should be as lastName
+	private String firstName;//FN should be as firstName
+	private String email;//EM should be as email
+	private int phoneNo;//PN should be as phoneNo
+	private int id;//ID should be as id
+	private double fines;//FINES should be as fines
 	
 	private Map<Integer, loan> LNS;
 
 	
 	public member(String lastName, String firstName, String email, int phoneNo, int id) {
-		this.LN = lastName;
-		this.FN = firstName;
-		this.EM = email;
-		this.PN = phoneNo;
-		this.ID = id;
+		this.lastName = lastName;//LN should be as lastName
+		this.firstName = firstName;//FN should be as firstName
+		this.email = email;//EM should be as email
+		this.phoneNo = phoneNo;//PN should be as phoneNo
+		this.id = id;//ID should be as id
 		
 		this.LNS = new HashMap<>();
 	}
@@ -30,44 +30,44 @@ public class member implements Serializable {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Member:  ").append(ID).append("\n")
-		  .append("  Name:  ").append(LN).append(", ").append(FN).append("\n")
-		  .append("  Email: ").append(EM).append("\n")
-		  .append("  Phone: ").append(PN)
+		sb.append("Member:  ").append(id).append("\n")//ID should be as id
+		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")//LN should be as lastName and FN should be as firstName
+		  .append("  Email: ").append(email).append("\n")//EM should be as email
+		  .append("  Phone: ").append(phoneNo)//PN should be as phoneNo
 		  .append("\n")
-		  .append(String.format("  Fines Owed :  $%.2f", FINES))
+		  .append(String.format("  Fines Owed :  $%.2f", fines))//FINES should be as fines
 		  .append("\n");
 		
-		for (loan LoAn : LNS.values()) {
-			sb.append(LoAn).append("\n");
+		for (loan loan : LNS.values()) {//LoAn should be as loan
+			sb.append(loan).append("\n");//LoAn should be as loan
 		}		  
 		return sb.toString();
 	}
 
 	
-	public int GeT_ID() {
-		return ID;
+	public int getId() {//GeT_ID should be as getId
+		return id;//ID should be as id
 	}
 
 	
-	public List<loan> GeT_LoAnS() {
+	public List<loan> getLoans() {//GeT_LoAnS should be as getLoans
 		return new ArrayList<loan>(LNS.values());
 	}
 
 	
-	public int Number_Of_Current_Loans() {
+	public int numberOfCurrentLoans() {//Number_Of_Current_Loans should be as numberOfCurrentLoans
 		return LNS.size();
 	}
 
 	
-	public double Fines_OwEd() {
-		return FINES;
+	public double finesOwed() {//Fines_OwEd should be as finesOwed
+		return fines;//FINES should be as fines
 	}
 
 	
-	public void Take_Out_Loan(loan loan) {
-		if (!LNS.containsKey(loan.ID())) {
-			LNS.put(loan.ID(), loan);
+	public void takeOutLoan(loan loan) {//Take_Out_Loan should be as takeOutLoan
+		if (!LNS.containsKey(loan.id())) {//ID should be as id
+			LNS.put(loan.id(), loan);//ID should be as id
 		}
 		else {
 			throw new RuntimeException("Duplicate loan added to member");
@@ -75,39 +75,39 @@ public class member implements Serializable {
 	}
 
 	
-	public String Get_LastName() {
-		return LN;
+	public String getLastName() {//Get_LastName should be as getLastName
+		return lastName;//LN should be as lastName
 	}
 
 	
-	public String Get_FirstName() {
-		return FN;
+	public String getFirstName() {//Get_FirstName should be as getFirstName
+		return firstName;//FN should be as firstName
 	}
 
 
-	public void Add_Fine(double fine) {
-		FINES += fine;
+	public void addFine(double fine) {//Add_Fine should be as addFine
+		fines += fine;//FINES should be as fines
 	}
 	
-	public double Pay_Fine(double AmOuNt) {
-		if (AmOuNt < 0) {
+	public double payFine(double amount) {//Pay_Fine should be as payFine and AmOuNt should be as amount
+		if (amount < 0) {//AmOuNt should be as amount
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
 		double change = 0;
-		if (AmOuNt > FINES) {
-			change = AmOuNt - FINES;
-			FINES = 0;
+		if (amount > fines) {//FINES should be as fines and AmOuNt should be as amount
+			change = amount - fines;//FINES should be as fines and AmOuNt should be as amount
+			fines = 0;//FINES should be as fines
 		}
 		else {
-			FINES -= AmOuNt;
+			fines -= amount;//FINES should be as fines and AmOuNt should be as amount
 		}
 		return change;
 	}
 
 
-	public void dIsChArGeLoAn(loan LoAn) {
-		if (LNS.containsKey(LoAn.ID())) {
-			LNS.remove(LoAn.ID());
+	public void dischargeLoan(loan loan) {//LoAn should be as loan and dIsChArGeLoAn should be as dischargeLoan
+		if (LNS.containsKey(loan.id())) {//ID should be as id and LoAn should be as loan
+			LNS.remove(loan.id());//ID should be as id and LoAn should be as loan
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
