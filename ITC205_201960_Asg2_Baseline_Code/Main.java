@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner IN;
-	private static library LIB;
+	private static Scanner INPUT;//IN should be as INPUT
+	private static library LIBRARY;//LIB should be as LIBRARY
 	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	private static Calendar CALENDAR;//CAL should be as CALENDAR
+	private static SimpleDateFormat SIMPLE_DATE_FORMAT;//SDF should be as SIMPLE_DATE_FORMAT
 	
 	
-	private static String Get_menu() {
+	private static String getMenu() {//Get_menu should be as getMenu
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -39,68 +39,68 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+			INPUT = new Scanner(System.in);//IN should be as INPUT
+			LIBRARY = library.INSTANCE();//LIB should be as LIBRARY
+			CALENDAR = Calendar.INSTANCE();//CAL should be as CALENDAR
+			SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");//SDF should be as SIMPLE_DATE_FORMAT
 	
-			for (member m : LIB.MEMBERS()) {
+			for (member m : LIBRARY.members()) {//LIB should be as LIBRARY and MEMBERS should be as members
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.BOOKS()) {
+			for (book b : LIBRARY.books()) {//LIB should be as LIBRARY and BOOKS should be as books
 				output(b);
 			}
 						
-			MENU = Get_menu();
+			MENU = getMenu();//Get_menu should be as getMenu
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.Date()));
+				output("\n" + SIMPLE_DATE_FORMAT.format(CALENDAR.Date()));//CAL should be as CALENDAR and SDF should be as SIMPLE_DATE_FORMAT
 				String c = input(MENU);
 				
 				switch (c.toUpperCase()) {
 				
 				case "M": 
-					ADD_MEMBER();
+					addMember();//ADD_MEMBER should be as addMember
 					break;
 					
 				case "LM": 
-					MEMBERS();
+					members();//MEMBERS should be as members
 					break;
 					
 				case "B": 
-					ADD_BOOK();
+					addBook();//ADD_BOOK should be as addBook
 					break;
 					
 				case "LB": 
-					BOOKS();
+					books();//BOOKS should be as books
 					break;
 					
 				case "FB": 
-					FIX_BOOKS();
+					fixBooks();//FIX_BOOKS should be as fixBooks
 					break;
 					
 				case "L": 
-					BORROW_BOOK();
+					borrowBook();//BORROW_BOOK should be as borrowBook
 					break;
 					
 				case "R": 
-					RETURN_BOOK();
+					returnBook();//RETURN_BOOK should be as returnBook
 					break;
 					
 				case "LL": 
-					CURRENT_LOANS();
+					currentLoans();//CURRENT_LOANS should be as currentLoans
 					break;
 					
 				case "P": 
-					FINES();
+					fines();//FINES should be as fines
 					break;
 					
 				case "T": 
-					INCREMENT_DATE();
+					incrementDate();//INCREMENT_DATE should be as incrementDate
 					break;
 					
 				case "Q": 
@@ -120,59 +120,60 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void FINES() {
-		new PayFineUI(new PayFineControl()).RuN();		
+	
+	private static void fines() {//FINES should be as fines
+		new PayFineUI(new PayFineControl()).run();//RuN should be as run		
 	}
 
 
-	private static void CURRENT_LOANS() {
+	private static void currentLoans() {//CURRENT_LOANS should be as currentLoans
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		for (loan loan : LIBRARY.currentLoans()) {//LIB should be as LIBRARY and CurrentLoans should be as currentLoans
 			output(loan + "\n");
 		}		
 	}
 
 
 
-	private static void BOOKS() {
+	private static void books() {//BOOKS should be as books
 		output("");
-		for (book book : LIB.BOOKS()) {
+		for (book book : LIBRARY.books()) {//LIB should be as LIBRARY and BOOKS should be as books
 			output(book + "\n");
 		}		
 	}
 
 
 
-	private static void MEMBERS() {
+	private static void members() {//MEMBERS should be as members
 		output("");
-		for (member member : LIB.MEMBERS()) {
+		for (member member : LIBRARY.members()) {//LIB should be as LIBRARY and MEMBERS should be as members
 			output(member + "\n");
 		}		
 	}
 
 
 
-	private static void BORROW_BOOK() {
+	private static void borrowBook() {//BORROW_BOOK should be as borrowBook
 		new BorrowBookUI(new BorrowBookControl()).run();		
 	}
 
 
-	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();		
+	private static void returnBook() {//RETURN_BOOK should be as returnBook
+		new ReturnBookUI(new ReturnBookControl()).run();//RuN should be as run		
 	}
 
 
-	private static void FIX_BOOKS() {
-		new FixBookUI(new FixBookControl()).RuN();		
+	private static void fixBooks() {//FIX_BOOKS should be as fixBooks
+		new FixBookUI(new FixBookControl()).run();//RuN should be as run		
 	}
 
 
-	private static void INCREMENT_DATE() {
+	private static void incrementDate() {//INCREMENT_DATE should be as incrementDate
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
+			CALENDAR.incrementDate(days);//CAL should be as CALENDAR
+			LIBRARY.checkCurrentLoans();//LIB should be as LIBRARY
+			output(SIMPLE_DATE_FORMAT.format(CALENDAR.Date()));//CAL should be as CALENDAR and SDF should be as SIMPLE_DATE_FORMAT
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -180,24 +181,26 @@ public class Main {
 	}
 
 
-	private static void ADD_BOOK() {
+	private static void addBook() {//ADD_BOOK should be as addBook
 		
-		String A = input("Enter author: ");
-		String T  = input("Enter title: ");
-		String C = input("Enter call number: ");
-		book B = LIB.Add_book(A, T, C);
+		String author = input("Enter author: ");//A should be as author
+		String title  = input("Enter title: ");//T should be as title
+		String callNumber = input("Enter call number: ");//C should be as callNumber
+		book B = LIBRARY.addBook(author, title, callNumber);//LIB should be as LIBRARY and Add_book should be as addBook
+		//A should be as author and T should be as title and C should be as callNumber
 		output("\n" + B + "\n");
 		
 	}
 
 	
-	private static void ADD_MEMBER() {
+	private static void addMember() {//ADD_MEMBER should be as addMember
 		try {
-			String LN = input("Enter last name: ");
-			String FN  = input("Enter first name: ");
-			String EM = input("Enter email: ");
-			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
+			String lastName = input("Enter last name: ");//LN should be as lastName
+			String firstName  = input("Enter first name: ");//FN should be as firstName
+			String email = input("Enter email: ");//EM should be as email
+			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();//PN should be as phoneNo
+			member M = LIBRARY.addMember(lastName, firstName, email, phoneNo);//LIB should be as LIBRARY and Add_mem should be as addMember
+			//LN should be as lastName and FN should be as firstName and EM should be as email and PN should be as phoneNo
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
@@ -209,7 +212,7 @@ public class Main {
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		return INPUT.nextLine();//IN should be as INPUT
 	}
 	
 	
