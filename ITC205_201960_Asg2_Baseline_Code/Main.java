@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner INPUT;//IN should be as INPUT
-	private static library LIBRARY;//LIB should be as LIBRARY
-	private static String MENU;
-	private static Calendar CALENDAR;//CAL should be as CALENDAR
-	private static SimpleDateFormat SIMPLE_DATE_FORMAT;//SDF should be as SIMPLE_DATE_FORMAT
+	private static Scanner input;//IN should be as input
+	private static Library library;//LIB should be as library and library should be as Library
+	private static String menu;//MENU should be as menu
+	private static Calendar calendar;//CAL should be as calendar
+	private static SimpleDateFormat simpleDateFormat;//SDF should be as simpleDateFormat
 	
 	
 	private static String getMenu() {//Get_menu should be as getMenu
@@ -39,27 +39,27 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			INPUT = new Scanner(System.in);//IN should be as INPUT
-			LIBRARY = library.INSTANCE();//LIB should be as LIBRARY
-			CALENDAR = Calendar.INSTANCE();//CAL should be as CALENDAR
-			SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");//SDF should be as SIMPLE_DATE_FORMAT
+			input = new Scanner(System.in);//IN should be as input
+			library = Library.getInstance();//LIB should be as library and INSTANCE should be as getInstance and library should be as Library
+			calendar = Calendar.getInstance();//CAL should be as calendar and INSTANCE should be as getInstance
+			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");//SDF should be as simpleDateFormat
 	
-			for (member m : LIBRARY.members()) {//LIB should be as LIBRARY and MEMBERS should be as members
+			for (member m : library.members()) {//LIB should be as library and MEMBERS should be as members
 				output(m);
 			}
 			output(" ");
-			for (book b : LIBRARY.books()) {//LIB should be as LIBRARY and BOOKS should be as books
+			for (book b : library.books()) {//LIB should be as library and BOOKS should be as books
 				output(b);
 			}
 						
-			MENU = getMenu();//Get_menu should be as getMenu
+			menu = getMenu();//Get_menu should be as getMenu and MENU should be as menu
 			
-			boolean e = false;
+			boolean isFalse = false;//e should be change as isFalse
 			
-			while (!e) {
+			while (!isFalse) {//e should be change as isFalse
 				
-				output("\n" + SIMPLE_DATE_FORMAT.format(CALENDAR.Date()));//CAL should be as CALENDAR and SDF should be as SIMPLE_DATE_FORMAT
-				String c = input(MENU);
+				output("\n" + simpleDateFormat.format(calendar.Date()));//CAL should be as calendar and SDF should be as simpleDateFormat
+				String inputString = getInput(menu);//input should be as getInput and MENU should be as menu and c should be as inputString
 				
 				switch (c.toUpperCase()) {
 				
@@ -104,7 +104,7 @@ public class Main {
 					break;
 					
 				case "Q": 
-					e = true;
+					isFalse = true;//e should be change as isFalse
 					break;
 					
 				default: 
@@ -112,10 +112,10 @@ public class Main {
 					break;
 				}
 				
-				library.SAVE();
+				Library.SAVE();//library should be as Library
 			}			
-		} catch (RuntimeException e) {
-			output(e);
+		} catch (RuntimeException isFalse) {//e should be change as isFalse
+			output(isFalse);//e should be change as isFalse
 		}		
 		output("\nEnded\n");
 	}	
@@ -128,7 +128,7 @@ public class Main {
 
 	private static void currentLoans() {//CURRENT_LOANS should be as currentLoans
 		output("");
-		for (loan loan : LIBRARY.currentLoans()) {//LIB should be as LIBRARY and CurrentLoans should be as currentLoans
+		for (Loan loan : library.currentLoans()) {//LIB should be as library and CurrentLoans should be as currentLoans and loan loan should be change as Loan loan
 			output(loan + "\n");
 		}		
 	}
@@ -137,7 +137,7 @@ public class Main {
 
 	private static void books() {//BOOKS should be as books
 		output("");
-		for (book book : LIBRARY.books()) {//LIB should be as LIBRARY and BOOKS should be as books
+		for (Book book : library.books()) {//LIB should be as library and BOOKS should be as books and book book should be change as Book book
 			output(book + "\n");
 		}		
 	}
@@ -146,7 +146,7 @@ public class Main {
 
 	private static void members() {//MEMBERS should be as members
 		output("");
-		for (member member : LIBRARY.members()) {//LIB should be as LIBRARY and MEMBERS should be as members
+		for (Member member : library.members()) {//LIB should be as library and MEMBERS should be as members and member member should be change as Member member
 			output(member + "\n");
 		}		
 	}
@@ -170,12 +170,12 @@ public class Main {
 
 	private static void incrementDate() {//INCREMENT_DATE should be as incrementDate
 		try {
-			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CALENDAR.incrementDate(days);//CAL should be as CALENDAR
-			LIBRARY.checkCurrentLoans();//LIB should be as LIBRARY
-			output(SIMPLE_DATE_FORMAT.format(CALENDAR.Date()));//CAL should be as CALENDAR and SDF should be as SIMPLE_DATE_FORMAT
+			int days = Integer.valueOf(getInput("Enter number of days: ")).intValue();//input should be as getInput
+			calendar.incrementDate(days);//CAL should be as calendar
+			library.checkCurrentLoans();//LIB should be as library
+			output(simpleDateFormat.format(calendar.Date()));//CAL should be as calendar and SDF should be as simpleDateFormat
 			
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException isFalse) {//e should be change as isFalse
 			 output("\nInvalid number of days\n");
 		}
 	}
@@ -183,10 +183,10 @@ public class Main {
 
 	private static void addBook() {//ADD_BOOK should be as addBook
 		
-		String author = input("Enter author: ");//A should be as author
-		String title  = input("Enter title: ");//T should be as title
-		String callNumber = input("Enter call number: ");//C should be as callNumber
-		book B = LIBRARY.addBook(author, title, callNumber);//LIB should be as LIBRARY and Add_book should be as addBook
+		String author = getInput("Enter author: ");//A should be as author and input should be as getInput
+		String title  = getInput("Enter title: ");//T should be as title and input should be as getInput
+		String callNumber = getInput("Enter call number: ");//C should be as callNumber and input should be as getInput
+		book B = library.addBook(author, title, callNumber);//LIB should be as library and Add_book should be as addBook
 		//A should be as author and T should be as title and C should be as callNumber
 		output("\n" + B + "\n");
 		
@@ -195,24 +195,24 @@ public class Main {
 	
 	private static void addMember() {//ADD_MEMBER should be as addMember
 		try {
-			String lastName = input("Enter last name: ");//LN should be as lastName
-			String firstName  = input("Enter first name: ");//FN should be as firstName
-			String email = input("Enter email: ");//EM should be as email
-			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();//PN should be as phoneNo
-			member M = LIBRARY.addMember(lastName, firstName, email, phoneNo);//LIB should be as LIBRARY and Add_mem should be as addMember
+			String lastName = getInput("Enter last name: ");//LN should be as lastName and input should be as getInput
+			String firstName  = getInput("Enter first name: ");//FN should be as firstName and input should be as getInput
+			String email = getInput("Enter email: ");//EM should be as email and input should be as getInput
+			int phoneNo = Integer.valueOf(getInput("Enter phone number: ")).intValue();//PN should be as phoneNo and input should be as getInput
+			member M = library.addMember(lastName, firstName, email, phoneNo);//LIB should be as library and Add_mem should be as addMember
 			//LN should be as lastName and FN should be as firstName and EM should be as email and PN should be as phoneNo
 			output("\n" + M + "\n");
 			
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException isFalse) {//e should be change as isFalse
 			 output("\nInvalid phone number\n");
 		}
 		
 	}
 
 
-	private static String input(String prompt) {
+	private static String getInput(String prompt) {//input should be as getInput
 		System.out.print(prompt);
-		return INPUT.nextLine();//IN should be as INPUT
+		return input.nextLine();//IN should be as input
 	}
 	
 	
