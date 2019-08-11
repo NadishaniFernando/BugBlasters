@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class member implements Serializable {
+public class Member implements Serializable {//member should be as Member
 
 	private String lastName;//LN should be as lastName
 	private String firstName;//FN should be as firstName
@@ -14,17 +14,17 @@ public class member implements Serializable {
 	private int id;//ID should be as id
 	private double fines;//FINES should be as fines
 	
-	private Map<Integer, loan> LNS;
+	private Map<Integer, loan> loanMap;//LNS should be as loanMap
 
 	
-	public member(String lastName, String firstName, String email, int phoneNo, int id) {
+	public Member(String lastName, String firstName, String email, int phoneNo, int id) {//member should be as Member
 		this.lastName = lastName;//LN should be as lastName
 		this.firstName = firstName;//FN should be as firstName
 		this.email = email;//EM should be as email
 		this.phoneNo = phoneNo;//PN should be as phoneNo
 		this.id = id;//ID should be as id
 		
-		this.LNS = new HashMap<>();
+		this.loanMap = new HashMap<>();//LNS should be as loanMap
 	}
 
 	
@@ -38,7 +38,7 @@ public class member implements Serializable {
 		  .append(String.format("  Fines Owed :  $%.2f", fines))//FINES should be as fines
 		  .append("\n");
 		
-		for (loan loan : LNS.values()) {//LoAn should be as loan
+		for (Loan loan : loanMap.values()) {//loan loan should be as Loan loan and LNS should be as loanMap
 			sb.append(loan).append("\n");//LoAn should be as loan
 		}		  
 		return sb.toString();
@@ -51,12 +51,12 @@ public class member implements Serializable {
 
 	
 	public List<loan> getLoans() {//GeT_LoAnS should be as getLoans
-		return new ArrayList<loan>(LNS.values());
+		return new ArrayList<loan>(loanMap.values());//LNS should be as loanMap
 	}
 
 	
 	public int numberOfCurrentLoans() {//Number_Of_Current_Loans should be as numberOfCurrentLoans
-		return LNS.size();
+		return loanMap.size();//LNS should be as loanMap
 	}
 
 	
@@ -65,9 +65,9 @@ public class member implements Serializable {
 	}
 
 	
-	public void takeOutLoan(loan loan) {//Take_Out_Loan should be as takeOutLoan
-		if (!LNS.containsKey(loan.id())) {//ID should be as id
-			LNS.put(loan.id(), loan);//ID should be as id
+	public void takeOutLoan(Loan loan) {//Take_Out_Loan should be as takeOutLoan and //loan loan should be as Loan loan
+		if (!loanMap.containsKey(loan.id())) {//ID should be as id and LNS should be as loanMap
+			loanMap.put(loan.id(), loan);//ID should be as id and LNS should be as loanMap
 		}
 		else {
 			throw new RuntimeException("Duplicate loan added to member");
@@ -105,9 +105,9 @@ public class member implements Serializable {
 	}
 
 
-	public void dischargeLoan(loan loan) {//LoAn should be as loan and dIsChArGeLoAn should be as dischargeLoan
-		if (LNS.containsKey(loan.id())) {//ID should be as id and LoAn should be as loan
-			LNS.remove(loan.id());//ID should be as id and LoAn should be as loan
+	public void dischargeLoan(Loan loan) {//LoAn should be as loan and dIsChArGeLoAn should be as dischargeLoan and loan loan should be as Loan loan
+		if (loanMap.containsKey(loan.id())) {//ID should be as id and LoAn should be as loan and LNS should be as loanMap
+			loanMap.remove(loan.id());//ID should be as id and LoAn should be as loan and LNS should be as loanMap
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
