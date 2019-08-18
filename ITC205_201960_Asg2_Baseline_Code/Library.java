@@ -150,7 +150,7 @@ public class Library implements Serializable {//library should be change as Libr
 	}
 
 	
-	public Book book(int bookId) {//book should be as Book and Book should be as book
+	public Book getBook(int bookId) {//book should be as Book and Book should be as getBook
 		if (catalog.containsKey(bookId))//CATALOG should be as catalog 
 			return catalog.get(bookId);//CATALOG should be as catalog		
 		return null;
@@ -215,15 +215,15 @@ public class Library implements Serializable {//library should be change as Libr
 	}
 
 
-	public void dischargeLoan(loan currentLoan, boolean isDamaged) {//Discharge_loan should be as dischargeLoan
+	public void dischargeLoan(Loan currentLoan, boolean isDamaged) {//Discharge_loan should be as dischargeLoan and loan should be as Loan
 		Member member = currentLoan.member();//member should be as Member
-		Book book  = currentLoan.book();//Book should be as book and book should be as Book
+		Book book  = currentLoan.getBook();//Book should be as getBook and book should be as Book
 		
 		double overDueFine = calculateOverDueFine(currentLoan);//CalculateOverDueFine should be as calculateOverDueFine
 		Member.addFine(overDueFine);//Add_Fine should be as addFine and member should be as Member	
 		
 		Member.dischargeLoan(currentLoan);//dIsChArGeLoAn should be as dischargeLoan and member should be as Member
-		Book.return(isDamaged);//book should be as Book and Return should be as return
+		book.returnBooks(isDamaged);//book.Return should be as book.returnBooks
 		if (isDamaged) {
 			Member.addFine(DAMAGE_FEE);//damageFee should be as DAMAGE_FEE and Add_Fine should be as addFine and member should be as Member
 			damagedBooks.put(book.bookId(), book);//DAMAGED_BOOKS should be as damagedBooks and ID should be as bookId
