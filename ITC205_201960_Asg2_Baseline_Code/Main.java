@@ -135,18 +135,18 @@ public class Main {
 
 
 
-	private static void books() {//BOOKS should be as books
+	private static void outputBooks() {//BOOKS should be as outputBooks
 		output("");
-		for (Book book : library.books()) {//LIB should be as library and BOOKS should be as books and book book should be change as Book book
+		for (Book book : library.getBooks()) {//LIB should be as library and BOOKS should be as getBooks and book book should be change as Book book
 			output(book + "\n");
 		}		
 	}
 
 
 
-	private static void members() {//MEMBERS should be as members
+	private static void outputMembers() {//MEMBERS should be as outputMembers
 		output("");
-		for (Member member : library.members()) {//LIB should be as library and MEMBERS should be as members and member member should be change as Member member
+		for (Member member : library.getMembers()) {//LIB should be as library and MEMBERS should be as getMembers and member member should be change as Member member
 			output(member + "\n");
 		}		
 	}
